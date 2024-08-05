@@ -1,18 +1,18 @@
 import pandas as pd
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
+# from streamlit_gsheets import GSheetsConnection
 
-# Define your spreadsheet ID
-SPREADSHEET_ID = '1qqu0xTwXrtDMGqVxmLHJON8mNF-sQpRIrIFb08MSChk'
+# # Define your spreadsheet ID
+# SPREADSHEET_ID = '1qqu0xTwXrtDMGqVxmLHJON8mNF-sQpRIrIFb08MSChk'
 
-# Establish connection
-conn = st.experimental_connection("gsheets", type=GSheetsConnection, spreadsheet=SPREADSHEET_ID)
+# # Establish connection
+# conn = st.experimental_connection("gsheets", type=GSheetsConnection, spreadsheet=SPREADSHEET_ID)
 
-# Read data from the specified worksheet
-existing_data = conn.read(worksheet='collected_data', usecols=list(range(3)))
-existing_data = existing_data.dropna(how='all')
+# # Read data from the specified worksheet
+# existing_data = conn.read(worksheet='collected_data', usecols=list(range(3)))
+# existing_data = existing_data.dropna(how='all')
 
-st.dataframe(existing_data)
+# st.dataframe(existing_data)
 
 # Function to calculate the user type based on the score
 def calculate_user_type(score):
@@ -86,18 +86,18 @@ if user_name:
             st.write(description)
 
             # # Add result to Google Sheet
-            submit_data = pd.DataFrame(
-                [
-                    {
-                        'Name': user_name,
-                        'Score': total_score,
-                        'Type': user_type
-                    }
-                ]
-            )
+            # submit_data = pd.DataFrame(
+            #     [
+            #         {
+            #             'Name': user_name,
+            #             'Score': total_score,
+            #             'Type': user_type
+            #         }
+            #     ]
+            # )
 
-            updated_df = pd.concat([existing_data, submit_data], ignore_index=True)
-            conn.update(worksheet='collected_data', data=updated_df)
+            # updated_df = pd.concat([existing_data, submit_data], ignore_index=True)
+            # conn.update(worksheet='collected_data', data=updated_df)
 
     # Restart functionality
     if restart:
